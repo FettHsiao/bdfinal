@@ -1,0 +1,58 @@
+[
+  {
+    "thread_id": "ptt_rent_001",
+    "board": "Rent",
+    "title": "Da'an 8 ping walkup — how much rent is reasonable now?",
+    "contains_pricing_question": true,
+    "keywords": ["pricing", "comparable", "Da'an", "walkup"]
+  },
+  {
+    "thread_id": "ptt_rent_002",
+    "board": "Rent",
+    "title": "Banqiao new elevator 10 ping — asking 25k, too high?",
+    "contains_pricing_question": true,
+    "keywords": ["Banqiao", "elevator", "overpriced", "vacancy"]
+  },
+  {
+    "thread_id": "ptt_rent_003",
+    "board": "home-sale",
+    "title": "Landlord spreadsheet template for tracking rents",
+    "contains_pricing_question": false,
+    "keywords": ["spreadsheet", "landlord", "tracking"]
+  },
+  {
+    "thread_id": "ptt_rent_004",
+    "board": "Rent",
+    "title": "Zhongshan studio pricing after renovation",
+    "contains_pricing_question": true,
+    "keywords": ["Zhongshan", "studio", "renovation", "pricing"]
+  },
+  {
+    "thread_id": "ptt_rent_005",
+    "board": "Rent",
+    "title": "Any tool to estimate rent by district?",
+    "contains_pricing_question": true,
+    "keywords": ["tool", "district", "estimate", "pricing"]
+  },
+  {
+    "thread_id": "ptt_rent_006",
+    "board": "Rent",
+    "title": "Xinyi 11 ping — agent says 38k, forum says 34k",
+    "contains_pricing_question": true,
+    "keywords": ["Xinyi", "agent", "comparable", "conflict"]
+  },
+  {
+    "thread_id": "ptt_rent_007",
+    "board": "Rent",
+    "title": "Vacancy cost when listing too high for 3 weeks",
+    "contains_pricing_question": true,
+    "keywords": ["vacancy", "overpriced", "cost"]
+  },
+  {
+    "thread_id": "ptt_rent_008",
+    "board": "Rent",
+    "title": "Neihu 9 ping elevator — recent transaction references?",
+    "contains_pricing_question": true,
+    "keywords": ["Neihu", "transaction", "reference", "comparable"]
+  }
+]

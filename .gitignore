@@ -1,0 +1,22 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Data artifacts
+data/leasepulse.db
+data/processed/
+
+# Environment
+.env
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Build
+dist/
+build/

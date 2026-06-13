@@ -1,0 +1,32 @@
+[
+  {
+    "product": "591 Premium Landlord Analytics",
+    "monthly_price_ntd": 1280,
+    "target_customer": "Listing-heavy agents",
+    "gaps_for_small_landlords": ["Too agent-centric", "Limited district benchmarking"]
+  },
+  {
+    "product": "HousePlus Market Report",
+    "monthly_price_ntd": 990,
+    "target_customer": "Property management firms",
+    "gaps_for_small_landlords": ["Enterprise pricing", "Long onboarding"]
+  },
+  {
+    "product": "MOI Open Data Portal",
+    "monthly_price_ntd": 0,
+    "target_customer": "Public / researchers",
+    "gaps_for_small_landlords": ["Raw data only", "No recommendations"]
+  },
+  {
+    "product": "RentCast Taiwan Beta",
+    "monthly_price_ntd": 590,
+    "target_customer": "Individual investors",
+    "gaps_for_small_landlords": ["Limited Taipei coverage", "No vacancy alerts"]
+  },
+  {
+    "product": "Agent CMA PDF Report",
+    "monthly_price_ntd": 1500,
+    "target_customer": "One-off vacancy pricing",
+    "gaps_for_small_landlords": ["Slow turnaround", "Not self-serve"]
+  }
+]
