@@ -44,7 +44,7 @@ process:
 run: public-evidence ingest process
 
 api:
-	$(PY) -m uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
+	$(PY) -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 dashboard:
 	API_BASE_URL=http://localhost:8000 $(PY) -m streamlit run dashboard/app.py

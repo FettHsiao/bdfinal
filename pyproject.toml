@@ -35,4 +35,4 @@ leasepulse-process = "pipeline.processor:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["pipeline*", "api*", "scripts*", "data*"]
+include = ["pipeline*", "app*", "api*", "scripts*", "data*"]

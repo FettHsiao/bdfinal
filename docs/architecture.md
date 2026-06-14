@@ -9,7 +9,8 @@ LeasePulse Taipei converts **live Taipei City open-data rental transactions** in
 - **`data/`** — all data acquisition and ingestion logic (open data, crawlers, evidence aggregation)
 - **`scripts/`** — thin CLI wrappers (`python scripts/foo.py` or `python -m data.foo`)
 - **`pipeline/`** — batch analytics and HW2 MapReduce K-Means
-- **`api/` / `dashboard/`** — delivery layer
+- **`app/`** — FastAPI application (`app/main.py`)
+- **`api/index.py`** — Vercel serverless entry (copies seed SQLite to `/tmp`)
 
 ## Data sources
 
@@ -36,8 +37,10 @@ data/taipei_open_data.py + data/ingest.py ──► SQL store
 pipeline/processor.py (Pandas + HW2 K-Means)
         │
         ▼
-FastAPI ──► Streamlit
+FastAPI ──► Streamlit (local / Streamlit Cloud)
 ```
+
+Deploy the API on Vercel via `api/index.py` + `vercel.json`; the seed database lives in `data/leasepulse.db`.
 
 ## Security & compliance
 

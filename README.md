@@ -17,7 +17,7 @@ NTU Big Data Systems (Spring 2026) final project: *Design a System That Monetize
 | `data/collect_public_demand_evidence.py` | Aggregate all public demand signals |
 | `scripts/*.py` | Thin CLI wrappers that call `data/` modules |
 | `pipeline/processor.py` | District metrics + HW2 MapReduce K-Means |
-| `api/main.py` / `dashboard/app.py` | FastAPI + Streamlit delivery |
+| `app/main.py` / `api/index.py` / `dashboard/app.py` | FastAPI app, Vercel entry, Streamlit UI |
 
 Implementation lives in **`data/`**. The `scripts/` folder only provides command-line entry points for reproducibility.
 
@@ -75,6 +75,46 @@ make fetch      # open-data download/clean only
 make process    # recompute metrics
 make test       # unit + smoke tests
 make package    # clean zip without .venv/.git
+```
+
+## Deploy API to Vercel
+
+Vercel does **not** run `make api`. It loads the ASGI app exported from `api/index.py`.
+
+1. Build the demo database locally:
+
+```bash
+make ingest
+make process
+# creates data/leasepulse.db (committed for deployment demo)
+```
+
+2. Push to GitHub and import the repo in Vercel.
+
+3. Set Vercel environment variables:
+
+```text
+DATABASE_URL=sqlite:////tmp/leasepulse.db
+ALLOW_REPROCESS=false
+PYTHON_VERSION=3.11
+```
+
+`api/index.py` copies `data/leasepulse.db` to `/tmp/leasepulse.db` on cold start.
+
+4. Vercel uses `requirements-vercel.txt` (see `vercel.json`). Streamlit dashboard stays local or on Streamlit Cloud.
+
+5. After deploy, test in order:
+
+```text
+/health
+/docs
+/metrics/districts
+```
+
+6. Regenerate the PDF with your live URL:
+
+```bash
+VERCEL_API_URL=https://your-project.vercel.app make report
 ```
 
 ## Ethics

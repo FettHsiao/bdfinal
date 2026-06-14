@@ -7,7 +7,7 @@ leasepulse_taipei.egg-info/
 .pytest_cache/
 
 # Data artifacts
-data/leasepulse.db
+# Demo seed DB is committed for Vercel deployment; regenerate locally with `make ingest && make process`.
 data/raw/
 data/processed/
 !data/processed/.gitkeep

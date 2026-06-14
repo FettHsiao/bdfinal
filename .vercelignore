@@ -1,0 +1,15 @@
+.venv
+__pycache__
+.pytest_cache
+*.egg-info
+.git
+data/raw
+data/processed
+dashboard
+report
+tests
+scripts
+docs
+*.zip
+__MACOSX
+.DS_Store

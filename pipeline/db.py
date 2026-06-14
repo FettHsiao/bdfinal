@@ -76,18 +76,32 @@ class RentalCluster(Base):
     updated_at = Column(DateTime, default=datetime.utcnow, index=True)
 
 
+_engine = None
+_sessionmaker = None
+_bound_url: str | None = None
+
+
 def get_database_url() -> str:
     default_sqlite = f"sqlite:///{os.path.join(os.getcwd(), 'data', 'leasepulse.db')}"
     return os.getenv("DATABASE_URL", default_sqlite)
 
 
 def get_engine():
+    global _engine
     url = get_database_url()
     connect_args = {"check_same_thread": False} if url.startswith("sqlite") else {}
-    return create_engine(url, connect_args=connect_args)
+    if _engine is None or str(_engine.url) != url:
+        _engine = create_engine(url, connect_args=connect_args)
+    return _engine
 
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=get_engine())
+def SessionLocal():
+    global _sessionmaker, _bound_url
+    url = get_database_url()
+    if _sessionmaker is None or _bound_url != url:
+        _bound_url = url
+        _sessionmaker = sessionmaker(autocommit=False, autoflush=False, bind=get_engine())
+    return _sessionmaker()
 
 
 @contextmanager

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime
 from pathlib import Path
 from xml.sax.saxutils import escape
@@ -36,9 +37,10 @@ TAIPEI_OPEN_DATA_URL = (
     "https://data.taipei/api/frontstage/tpeod/dataset/resource.download"
     "?rid=2979c431-7a32-4067-9af2-e716cd825c4b"
 )
+VERCEL_API_URL = os.getenv("VERCEL_API_URL", "https://bdfinal.vercel.app").strip()
 LIVE_DEMO_NOTE = (
-    "Local product demo: run `make api` (http://localhost:8000/) and "
-    "`make dashboard` (http://localhost:8501/) — see repository README"
+    f"Live API: {VERCEL_API_URL} (Swagger docs at {VERCEL_API_URL}/docs). "
+    "Local dashboard: run `make api` and `make dashboard`."
 )
 
 REPORT_FONT = "Helvetica"
@@ -650,7 +652,7 @@ def build_report(output_path: Path) -> None:
         "charts, HW2 K-Means segments, and an interactive quote form. After submission, the quote "
         "view shows conservative/market/aggressive monthly rent, rent-per-ping, annual rent, a bar "
         "chart, sample-size/confidence metadata, and strategy notes.",
-        f"<b>FastAPI REST layer</b> ({mono('api/main.py')}): typed endpoints including "
+        f"<b>FastAPI REST layer</b> ({mono('app/main.py')}): typed endpoints including "
         f"{mono('/health')}, {mono('/metrics/districts')}, "
         f"{mono('/quote')}, {mono('/clusters')}, and "
         f"{mono('/docs')}. The root path {mono('/')} renders an "

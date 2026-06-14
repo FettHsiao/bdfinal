@@ -18,7 +18,6 @@ from pipeline.db import (
     SessionLocal,
     init_db,
 )
-from pipeline.processor import run_pipeline
 
 app = FastAPI(
     title="LeasePulse Taipei API",
@@ -111,7 +110,7 @@ def home() -> str:
   </ul>
   <p class="hint">
     For the customer-facing product UI, run <code>make dashboard</code>
-    and open <a href="http://localhost:8501/">http://localhost:8501/</a>.
+    locally or deploy the Streamlit app separately.
   </p>
 </body>
 </html>"""
@@ -271,4 +270,6 @@ def transaction_summary(db: Session = Depends(get_db)) -> dict:
 def reprocess(db: Session = Depends(get_db)) -> dict:
     if os.getenv("ALLOW_REPROCESS", "true").lower() != "true":
         raise HTTPException(status_code=403, detail="Reprocess disabled")
+    from pipeline.processor import run_pipeline
+
     return run_pipeline(db)

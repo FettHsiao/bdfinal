@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class SmokeTests(unittest.TestCase):
     def test_key_modules_import(self):
-        import api.main  # noqa: F401
+        import app.main  # noqa: F401
         import data.collect_public_demand_evidence  # noqa: F401
         import data.collect_search_trends  # noqa: F401
         import data.ingest  # noqa: F401
@@ -29,6 +29,16 @@ class SmokeTests(unittest.TestCase):
         wrapper = (ROOT / "scripts/collect_search_trends.py").read_text(encoding="utf-8")
         self.assertIn("from data.collect_search_trends import main", wrapper)
         self.assertLess(len(wrapper.splitlines()), 10)
+
+    def test_vercel_entry_imports(self):
+        import importlib.util
+
+        index_path = ROOT / "api" / "index.py"
+        spec = importlib.util.spec_from_file_location("vercel_index", index_path)
+        module = importlib.util.module_from_spec(spec)
+        self.assertIsNotNone(spec.loader)
+        spec.loader.exec_module(module)
+        self.assertTrue(hasattr(module, "app"))
 
     def test_gitignore_excludes_local_env(self):
         gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
