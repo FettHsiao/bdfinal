@@ -26,7 +26,7 @@ from pipeline.db import (
     RentalCluster,
     RentalTransaction,
     SessionLocal,
-    init_db,
+    ensure_serverless_sqlite,
 )
 
 app = FastAPI(
@@ -68,7 +68,7 @@ def get_db():
 
 @app.on_event("startup")
 def startup() -> None:
-    init_db()
+    ensure_serverless_sqlite()
 
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)

@@ -33,8 +33,8 @@ class SmokeTests(unittest.TestCase):
     def test_vercel_entry_imports(self):
         import importlib.util
 
-        index_path = ROOT / "api" / "index.py"
-        spec = importlib.util.spec_from_file_location("vercel_index", index_path)
+        index_path = ROOT / "main.py"
+        spec = importlib.util.spec_from_file_location("vercel_main", index_path)
         module = importlib.util.module_from_spec(spec)
         self.assertIsNotNone(spec.loader)
         spec.loader.exec_module(module)
@@ -58,7 +58,7 @@ class SmokeTests(unittest.TestCase):
             os.environ["VERCEL"] = "1"
             self.assertTrue(db.is_serverless_runtime())
             url = db.get_database_url()
-            self.assertIn("/tmp/leasepulse.db", url)
+            self.assertEqual(url, db.SERVERLESS_SQLITE_URL)
         db.reset_db_connections()
         os.environ.pop("VERCEL", None)
 

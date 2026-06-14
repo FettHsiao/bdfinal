@@ -21,6 +21,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 ROOT = Path(__file__).resolve().parents[1]
 TMP_DB = Path("/tmp/leasepulse.db")
+SERVERLESS_SQLITE_URL = "sqlite:////tmp/leasepulse.db"
 
 Base = declarative_base()
 
@@ -89,7 +90,8 @@ _serverless_bootstrapped = False
 
 def is_serverless_runtime() -> bool:
     return bool(
-        os.getenv("VERCEL")
+        os.getenv("LAMBDA_TASK_ROOT")
+        or os.getenv("VERCEL")
         or os.getenv("VERCEL_ENV")
         or os.getenv("AWS_LAMBDA_FUNCTION_NAME")
         or os.getenv("AWS_EXECUTION_ENV")
@@ -97,9 +99,14 @@ def is_serverless_runtime() -> bool:
     )
 
 
+def task_root() -> Path:
+    return Path(os.getenv("LAMBDA_TASK_ROOT", "/var/task"))
+
+
 def seed_db_candidates() -> list[Path]:
+    root = task_root()
     return [
-        Path("/var/task/data/leasepulse.db"),
+        root / "data" / "leasepulse.db",
         ROOT / "data" / "leasepulse.db",
         Path.cwd() / "data" / "leasepulse.db",
     ]
@@ -112,21 +119,24 @@ def ensure_serverless_sqlite() -> None:
         return
 
     os.environ["ALLOW_REPROCESS"] = "false"
+    os.environ["DATABASE_URL"] = SERVERLESS_SQLITE_URL
 
     if not TMP_DB.exists():
         for seed in seed_db_candidates():
             if seed.exists():
                 shutil.copyfile(seed, TMP_DB)
                 break
+        else:
+            TMP_DB.parent.mkdir(parents=True, exist_ok=True)
+            TMP_DB.touch()
 
-    os.environ["DATABASE_URL"] = f"sqlite:///{TMP_DB}"
     _serverless_bootstrapped = True
 
 
 def get_database_url() -> str:
     ensure_serverless_sqlite()
     if is_serverless_runtime():
-        return f"sqlite:///{TMP_DB}"
+        return SERVERLESS_SQLITE_URL
 
     explicit = os.getenv("DATABASE_URL")
     if explicit:
@@ -180,4 +190,7 @@ def session_scope():
 
 def init_db() -> None:
     ensure_serverless_sqlite()
+    if is_serverless_runtime():
+        # Demo DB is copied to /tmp at cold start; avoid DDL on read-only bundles.
+        return
     Base.metadata.create_all(bind=get_engine())

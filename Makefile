@@ -9,7 +9,7 @@ export PYTHONPATH := $(CURDIR)
 install:
 	python3 -m venv .venv
 	.venv/bin/pip install -U pip
-	.venv/bin/pip install -e .
+	.venv/bin/pip install -e ".[full]"
 
 setup: install run
 

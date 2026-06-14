@@ -1,16 +1,5 @@
-"""Vercel serverless entrypoint for the LeasePulse FastAPI app."""
+"""Legacy Vercel entry; prefer root main.py via [tool.vercel]."""
 
-from __future__ import annotations
+from main import app
 
-import sys
-from pathlib import Path
-
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-
-from pipeline.vercel_runtime import configure_vercel_sqlite
-
-configure_vercel_sqlite(ROOT)
-
-from app.main import app
+__all__ = ["app"]

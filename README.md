@@ -108,7 +108,7 @@ make package    # clean zip without .venv/.git
 
 ## Deploy API to Vercel
 
-Vercel does **not** run `make api`. It loads the ASGI app exported from `api/index.py`.
+Vercel does **not** run `make api`. It loads the ASGI app from root `main.py` (`[tool.vercel] entrypoint` in `pyproject.toml`).
 
 1. Build the demo database locally:
 
@@ -132,7 +132,7 @@ Remove any `DATABASE_URL=sqlite:///data/leasepulse.db` from Vercel **Project →
 
 If Vercel still installs Streamlit/plotly, set **Install Command** to `pip install -r requirements-vercel.txt` in Project Settings (should match `vercel.json`).
 
-4. Vercel uses `requirements-vercel.txt` (see `vercel.json`). Streamlit dashboard stays local or on Streamlit Cloud.
+4. Vercel installs slim API deps from `pyproject.toml` (Streamlit stays in `requirements.txt` for Streamlit Cloud).
 
 5. After deploy, test in order:
 
