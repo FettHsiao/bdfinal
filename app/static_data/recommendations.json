@@ -1,0 +1,562 @@
+[
+  {
+    "district": "中山區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 14798,
+    "recommended_rent_mid": 19478,
+    "recommended_rent_high": 22339,
+    "confidence_score": 0.95,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "中山區",
+    "building_type": "公寓(無電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 12568,
+    "recommended_rent_mid": 14512,
+    "recommended_rent_high": 18638,
+    "confidence_score": 0.85,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "中山區",
+    "building_type": "店面(店鋪)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 34307,
+    "recommended_rent_mid": 43578,
+    "recommended_rent_high": 45912,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "中山區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 13626,
+    "recommended_rent_mid": 17710,
+    "recommended_rent_high": 22314,
+    "confidence_score": 0.95,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "中山區",
+    "building_type": "辦公商業大樓",
+    "area_ping": 10.0,
+    "recommended_rent_low": 15141,
+    "recommended_rent_mid": 15225,
+    "recommended_rent_high": 16103,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "中正區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 13965,
+    "recommended_rent_mid": 16333,
+    "recommended_rent_high": 17241,
+    "confidence_score": 0.45,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "中正區",
+    "building_type": "公寓(無電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 8965,
+    "recommended_rent_mid": 11080,
+    "recommended_rent_high": 12205,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "中正區",
+    "building_type": "店面(店鋪)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 41270,
+    "recommended_rent_mid": 41270,
+    "recommended_rent_high": 41270,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "中正區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 12015,
+    "recommended_rent_mid": 14463,
+    "recommended_rent_high": 15748,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "中正區",
+    "building_type": "辦公商業大樓",
+    "area_ping": 10.0,
+    "recommended_rent_low": 16051,
+    "recommended_rent_mid": 16352,
+    "recommended_rent_high": 16727,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "信義區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 18534,
+    "recommended_rent_mid": 25906,
+    "recommended_rent_high": 32071,
+    "confidence_score": 0.65,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "信義區",
+    "building_type": "公寓(無電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 10739,
+    "recommended_rent_mid": 18511,
+    "recommended_rent_high": 37294,
+    "confidence_score": 0.95,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "信義區",
+    "building_type": "店面(店鋪)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 16866,
+    "recommended_rent_mid": 28506,
+    "recommended_rent_high": 40146,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "信義區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 30145,
+    "recommended_rent_mid": 39231,
+    "recommended_rent_high": 45000,
+    "confidence_score": 0.75,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "內湖區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 13780,
+    "recommended_rent_mid": 15123,
+    "recommended_rent_high": 16005,
+    "confidence_score": 0.4,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "內湖區",
+    "building_type": "公寓(無電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 7922,
+    "recommended_rent_mid": 9541,
+    "recommended_rent_high": 12831,
+    "confidence_score": 0.95,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "內湖區",
+    "building_type": "店面(店鋪)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 14827,
+    "recommended_rent_mid": 16576,
+    "recommended_rent_high": 20282,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "內湖區",
+    "building_type": "廠辦",
+    "area_ping": 10.0,
+    "recommended_rent_low": 11590,
+    "recommended_rent_mid": 13032,
+    "recommended_rent_high": 14000,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "內湖區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 9754,
+    "recommended_rent_mid": 15160,
+    "recommended_rent_high": 22139,
+    "confidence_score": 0.6,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "北投區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 11266,
+    "recommended_rent_mid": 13089,
+    "recommended_rent_high": 17788,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "北投區",
+    "building_type": "公寓(無電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 7764,
+    "recommended_rent_mid": 9169,
+    "recommended_rent_high": 10947,
+    "confidence_score": 0.75,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "北投區",
+    "building_type": "店面(店鋪)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 15406,
+    "recommended_rent_mid": 15406,
+    "recommended_rent_high": 15406,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "北投區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 10655,
+    "recommended_rent_mid": 15228,
+    "recommended_rent_high": 18695,
+    "confidence_score": 0.6,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "北投區",
+    "building_type": "辦公商業大樓",
+    "area_ping": 10.0,
+    "recommended_rent_low": 8648,
+    "recommended_rent_mid": 8648,
+    "recommended_rent_high": 8648,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "南港區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 24846,
+    "recommended_rent_mid": 24846,
+    "recommended_rent_high": 24846,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "南港區",
+    "building_type": "公寓(無電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 8029,
+    "recommended_rent_mid": 10158,
+    "recommended_rent_high": 17692,
+    "confidence_score": 0.45,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "南港區",
+    "building_type": "廠辦",
+    "area_ping": 10.0,
+    "recommended_rent_low": 9257,
+    "recommended_rent_mid": 9257,
+    "recommended_rent_high": 9257,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "南港區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 12218,
+    "recommended_rent_mid": 12474,
+    "recommended_rent_high": 12731,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "南港區",
+    "building_type": "辦公商業大樓",
+    "area_ping": 10.0,
+    "recommended_rent_low": 12901,
+    "recommended_rent_mid": 13625,
+    "recommended_rent_high": 19612,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "士林區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 16787,
+    "recommended_rent_mid": 17180,
+    "recommended_rent_high": 18973,
+    "confidence_score": 0.45,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "士林區",
+    "building_type": "公寓(無電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 10236,
+    "recommended_rent_mid": 13819,
+    "recommended_rent_high": 26431,
+    "confidence_score": 0.95,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "士林區",
+    "building_type": "店面(店鋪)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 17205,
+    "recommended_rent_mid": 20790,
+    "recommended_rent_high": 23349,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "士林區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 13389,
+    "recommended_rent_mid": 14493,
+    "recommended_rent_high": 22459,
+    "confidence_score": 0.55,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "大同區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 13402,
+    "recommended_rent_mid": 20034,
+    "recommended_rent_high": 23332,
+    "confidence_score": 0.7,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "大同區",
+    "building_type": "公寓(無電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 8216,
+    "recommended_rent_mid": 11660,
+    "recommended_rent_high": 14936,
+    "confidence_score": 0.5,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "大同區",
+    "building_type": "店面(店鋪)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 16846,
+    "recommended_rent_mid": 16846,
+    "recommended_rent_high": 16846,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "大同區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 11986,
+    "recommended_rent_mid": 14315,
+    "recommended_rent_high": 20636,
+    "confidence_score": 0.4,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "大同區",
+    "building_type": "辦公商業大樓",
+    "area_ping": 10.0,
+    "recommended_rent_low": 17647,
+    "recommended_rent_mid": 17647,
+    "recommended_rent_high": 17647,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "大安區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 16475,
+    "recommended_rent_mid": 22777,
+    "recommended_rent_high": 27670,
+    "confidence_score": 0.95,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "大安區",
+    "building_type": "公寓(無電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 11397,
+    "recommended_rent_mid": 30578,
+    "recommended_rent_high": 37427,
+    "confidence_score": 0.85,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "大安區",
+    "building_type": "店面(店鋪)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 26984,
+    "recommended_rent_mid": 34308,
+    "recommended_rent_high": 47652,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "大安區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 11411,
+    "recommended_rent_mid": 14475,
+    "recommended_rent_high": 19470,
+    "confidence_score": 0.55,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "大安區",
+    "building_type": "辦公商業大樓",
+    "area_ping": 10.0,
+    "recommended_rent_low": 17138,
+    "recommended_rent_mid": 19860,
+    "recommended_rent_high": 21171,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "文山區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 8026,
+    "recommended_rent_mid": 9250,
+    "recommended_rent_high": 13810,
+    "confidence_score": 0.55,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "文山區",
+    "building_type": "公寓(無電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 7953,
+    "recommended_rent_mid": 9078,
+    "recommended_rent_high": 9391,
+    "confidence_score": 0.95,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "文山區",
+    "building_type": "店面(店鋪)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 13941,
+    "recommended_rent_mid": 15373,
+    "recommended_rent_high": 17253,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "文山區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 9840,
+    "recommended_rent_mid": 12962,
+    "recommended_rent_high": 16366,
+    "confidence_score": 0.95,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "松山區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 15580,
+    "recommended_rent_mid": 20617,
+    "recommended_rent_high": 22646,
+    "confidence_score": 0.6,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "松山區",
+    "building_type": "公寓(無電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 11803,
+    "recommended_rent_mid": 15003,
+    "recommended_rent_high": 23056,
+    "confidence_score": 0.75,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "松山區",
+    "building_type": "店面(店鋪)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 22467,
+    "recommended_rent_mid": 22467,
+    "recommended_rent_high": 22467,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "松山區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 10930,
+    "recommended_rent_mid": 17632,
+    "recommended_rent_high": 26000,
+    "confidence_score": 0.4,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "松山區",
+    "building_type": "辦公商業大樓",
+    "area_ping": 10.0,
+    "recommended_rent_low": 25236,
+    "recommended_rent_mid": 30242,
+    "recommended_rent_high": 30556,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "萬華區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 14199,
+    "recommended_rent_mid": 14522,
+    "recommended_rent_high": 15172,
+    "confidence_score": 0.4,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "萬華區",
+    "building_type": "公寓(無電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 8648,
+    "recommended_rent_mid": 10077,
+    "recommended_rent_high": 13817,
+    "confidence_score": 0.95,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "萬華區",
+    "building_type": "店面(店鋪)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 26148,
+    "recommended_rent_mid": 26148,
+    "recommended_rent_high": 26148,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  },
+  {
+    "district": "萬華區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "area_ping": 10.0,
+    "recommended_rent_low": 8117,
+    "recommended_rent_mid": 11354,
+    "recommended_rent_high": 14532,
+    "confidence_score": 0.35,
+    "updated_at": "2026-06-14T11:50:39.776604"
+  }
+]

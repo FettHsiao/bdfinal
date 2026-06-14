@@ -33,12 +33,22 @@ class SmokeTests(unittest.TestCase):
     def test_vercel_entry_imports(self):
         import importlib.util
 
-        index_path = ROOT / "main.py"
-        spec = importlib.util.spec_from_file_location("vercel_main", index_path)
+        index_path = ROOT / "app" / "main.py"
+        spec = importlib.util.spec_from_file_location("vercel_app", index_path)
         module = importlib.util.module_from_spec(spec)
         self.assertIsNotNone(spec.loader)
         spec.loader.exec_module(module)
         self.assertTrue(hasattr(module, "app"))
+
+    def test_static_api_payloads_exist(self):
+        static_dir = ROOT / "app" / "static_data"
+        for name in (
+            "district_metrics.json",
+            "recommendations.json",
+            "clusters.json",
+            "transactions_summary.json",
+        ):
+            self.assertTrue((static_dir / name).exists(), name)
 
     def test_streamlit_dashboard_exists(self):
         self.assertTrue((ROOT / "dashboard" / "app.py").exists())

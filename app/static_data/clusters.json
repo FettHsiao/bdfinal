@@ -1,0 +1,34 @@
+[
+  {
+    "cluster_id": 0,
+    "segment_label": "premium",
+    "centroid_area_ping": 13.514755555555553,
+    "centroid_rent_per_ping": 1772.1444444444444,
+    "sample_size": 226,
+    "updated_at": "2026-06-14T11:50:39.849484"
+  },
+  {
+    "cluster_id": 1,
+    "segment_label": "luxury",
+    "centroid_area_ping": 9.488124999999993,
+    "centroid_rent_per_ping": 3764.2920833333333,
+    "sample_size": 96,
+    "updated_at": "2026-06-14T11:50:39.849521"
+  },
+  {
+    "cluster_id": 2,
+    "segment_label": "budget",
+    "centroid_area_ping": 32.37049549549549,
+    "centroid_rent_per_ping": 1071.9027477477475,
+    "sample_size": 221,
+    "updated_at": "2026-06-14T11:50:39.849535"
+  },
+  {
+    "cluster_id": 3,
+    "segment_label": "value",
+    "centroid_area_ping": 105.91999999999999,
+    "centroid_rent_per_ping": 1658.2837037037038,
+    "sample_size": 27,
+    "updated_at": "2026-06-14T11:50:39.849546"
+  }
+]

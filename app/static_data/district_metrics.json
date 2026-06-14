@@ -1,0 +1,562 @@
+[
+  {
+    "district": "中山區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "sample_size": 46,
+    "median_rent_per_ping": 1947.83,
+    "p25_rent_per_ping": 1479.85,
+    "p75_rent_per_ping": 2233.9300000000003,
+    "median_rent_ntd": 24500.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "中山區",
+    "building_type": "公寓(無電梯)",
+    "sample_size": 17,
+    "median_rent_per_ping": 1451.19,
+    "p25_rent_per_ping": 1256.81,
+    "p75_rent_per_ping": 1863.75,
+    "median_rent_ntd": 23000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "中山區",
+    "building_type": "店面(店鋪)",
+    "sample_size": 3,
+    "median_rent_per_ping": 4357.84,
+    "p25_rent_per_ping": 3430.71,
+    "p75_rent_per_ping": 4591.1849999999995,
+    "median_rent_ntd": 95574.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "中山區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "sample_size": 32,
+    "median_rent_per_ping": 1770.955,
+    "p25_rent_per_ping": 1362.615,
+    "p75_rent_per_ping": 2231.3599999999997,
+    "median_rent_ntd": 19500.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "中山區",
+    "building_type": "辦公商業大樓",
+    "sample_size": 3,
+    "median_rent_per_ping": 1522.51,
+    "p25_rent_per_ping": 1514.06,
+    "p75_rent_per_ping": 1610.3,
+    "median_rent_ntd": 67645.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "中正區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "sample_size": 9,
+    "median_rent_per_ping": 1633.29,
+    "p25_rent_per_ping": 1396.49,
+    "p75_rent_per_ping": 1724.14,
+    "median_rent_ntd": 19900.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "中正區",
+    "building_type": "公寓(無電梯)",
+    "sample_size": 7,
+    "median_rent_per_ping": 1108.03,
+    "p25_rent_per_ping": 896.4649999999999,
+    "p75_rent_per_ping": 1220.5,
+    "median_rent_ntd": 26000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "中正區",
+    "building_type": "店面(店鋪)",
+    "sample_size": 1,
+    "median_rent_per_ping": 4126.98,
+    "p25_rent_per_ping": 4126.98,
+    "p75_rent_per_ping": 4126.98,
+    "median_rent_ntd": 65000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "中正區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "sample_size": 6,
+    "median_rent_per_ping": 1446.29,
+    "p25_rent_per_ping": 1201.5075,
+    "p75_rent_per_ping": 1574.815,
+    "median_rent_ntd": 38500.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "中正區",
+    "building_type": "辦公商業大樓",
+    "sample_size": 5,
+    "median_rent_per_ping": 1635.17,
+    "p25_rent_per_ping": 1605.14,
+    "p75_rent_per_ping": 1672.73,
+    "median_rent_ntd": 90000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "信義區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "sample_size": 13,
+    "median_rent_per_ping": 2590.57,
+    "p25_rent_per_ping": 1853.41,
+    "p75_rent_per_ping": 3207.07,
+    "median_rent_ntd": 38729.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "信義區",
+    "building_type": "公寓(無電梯)",
+    "sample_size": 30,
+    "median_rent_per_ping": 1851.08,
+    "p25_rent_per_ping": 1073.935,
+    "p75_rent_per_ping": 3729.3900000000003,
+    "median_rent_ntd": 17650.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "信義區",
+    "building_type": "店面(店鋪)",
+    "sample_size": 2,
+    "median_rent_per_ping": 2850.63,
+    "p25_rent_per_ping": 1686.6149999999998,
+    "p75_rent_per_ping": 4014.645,
+    "median_rent_ntd": 96250.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "信義區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "sample_size": 15,
+    "median_rent_per_ping": 3923.08,
+    "p25_rent_per_ping": 3014.49,
+    "p75_rent_per_ping": 4500.0,
+    "median_rent_ntd": 22500.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "內湖區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "sample_size": 8,
+    "median_rent_per_ping": 1512.3400000000001,
+    "p25_rent_per_ping": 1378.0075000000002,
+    "p75_rent_per_ping": 1600.4875,
+    "median_rent_ntd": 32000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "內湖區",
+    "building_type": "公寓(無電梯)",
+    "sample_size": 25,
+    "median_rent_per_ping": 954.06,
+    "p25_rent_per_ping": 792.22,
+    "p75_rent_per_ping": 1283.08,
+    "median_rent_ntd": 26000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "內湖區",
+    "building_type": "店面(店鋪)",
+    "sample_size": 3,
+    "median_rent_per_ping": 1657.57,
+    "p25_rent_per_ping": 1482.69,
+    "p75_rent_per_ping": 2028.185,
+    "median_rent_ntd": 41000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "內湖區",
+    "building_type": "廠辦",
+    "sample_size": 5,
+    "median_rent_per_ping": 1303.23,
+    "p25_rent_per_ping": 1158.97,
+    "p75_rent_per_ping": 1400.0,
+    "median_rent_ntd": 115030.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "內湖區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "sample_size": 12,
+    "median_rent_per_ping": 1515.995,
+    "p25_rent_per_ping": 975.4475,
+    "p75_rent_per_ping": 2213.9475,
+    "median_rent_ntd": 23750.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "北投區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "sample_size": 7,
+    "median_rent_per_ping": 1308.86,
+    "p25_rent_per_ping": 1126.5549999999998,
+    "p75_rent_per_ping": 1778.77,
+    "median_rent_ntd": 33000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "北投區",
+    "building_type": "公寓(無電梯)",
+    "sample_size": 15,
+    "median_rent_per_ping": 916.89,
+    "p25_rent_per_ping": 776.375,
+    "p75_rent_per_ping": 1094.675,
+    "median_rent_ntd": 22000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "北投區",
+    "building_type": "店面(店鋪)",
+    "sample_size": 1,
+    "median_rent_per_ping": 1540.62,
+    "p25_rent_per_ping": 1540.62,
+    "p75_rent_per_ping": 1540.62,
+    "median_rent_ntd": 33000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "北投區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "sample_size": 12,
+    "median_rent_per_ping": 1522.805,
+    "p25_rent_per_ping": 1065.5149999999999,
+    "p75_rent_per_ping": 1869.4624999999999,
+    "median_rent_ntd": 19750.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "北投區",
+    "building_type": "辦公商業大樓",
+    "sample_size": 1,
+    "median_rent_per_ping": 864.8,
+    "p25_rent_per_ping": 864.8,
+    "p75_rent_per_ping": 864.8,
+    "median_rent_ntd": 30000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "南港區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "sample_size": 1,
+    "median_rent_per_ping": 2484.62,
+    "p25_rent_per_ping": 2484.62,
+    "p75_rent_per_ping": 2484.62,
+    "median_rent_ntd": 58786.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "南港區",
+    "building_type": "公寓(無電梯)",
+    "sample_size": 9,
+    "median_rent_per_ping": 1015.85,
+    "p25_rent_per_ping": 802.92,
+    "p75_rent_per_ping": 1769.23,
+    "median_rent_ntd": 23000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "南港區",
+    "building_type": "廠辦",
+    "sample_size": 1,
+    "median_rent_per_ping": 925.7,
+    "p25_rent_per_ping": 925.7,
+    "p75_rent_per_ping": 925.7,
+    "median_rent_ntd": 196609.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "南港區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "sample_size": 2,
+    "median_rent_per_ping": 1247.435,
+    "p25_rent_per_ping": 1221.8025,
+    "p75_rent_per_ping": 1273.0675,
+    "median_rent_ntd": 31500.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "南港區",
+    "building_type": "辦公商業大樓",
+    "sample_size": 3,
+    "median_rent_per_ping": 1362.5,
+    "p25_rent_per_ping": 1290.1100000000001,
+    "p75_rent_per_ping": 1961.15,
+    "median_rent_ntd": 147000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "士林區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "sample_size": 9,
+    "median_rent_per_ping": 1717.99,
+    "p25_rent_per_ping": 1678.69,
+    "p75_rent_per_ping": 1897.32,
+    "median_rent_ntd": 68000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "士林區",
+    "building_type": "公寓(無電梯)",
+    "sample_size": 26,
+    "median_rent_per_ping": 1381.865,
+    "p25_rent_per_ping": 1023.6075000000001,
+    "p75_rent_per_ping": 2643.105,
+    "median_rent_ntd": 15000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "士林區",
+    "building_type": "店面(店鋪)",
+    "sample_size": 3,
+    "median_rent_per_ping": 2079.0,
+    "p25_rent_per_ping": 1720.545,
+    "p75_rent_per_ping": 2334.885,
+    "median_rent_ntd": 51375.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "士林區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "sample_size": 11,
+    "median_rent_per_ping": 1449.28,
+    "p25_rent_per_ping": 1338.8899999999999,
+    "p75_rent_per_ping": 2245.87,
+    "median_rent_ntd": 27420.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "大同區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "sample_size": 14,
+    "median_rent_per_ping": 2003.44,
+    "p25_rent_per_ping": 1340.165,
+    "p75_rent_per_ping": 2333.23,
+    "median_rent_ntd": 31750.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "大同區",
+    "building_type": "公寓(無電梯)",
+    "sample_size": 10,
+    "median_rent_per_ping": 1166.005,
+    "p25_rent_per_ping": 821.5699999999999,
+    "p75_rent_per_ping": 1493.5500000000002,
+    "median_rent_ntd": 20500.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "大同區",
+    "building_type": "店面(店鋪)",
+    "sample_size": 1,
+    "median_rent_per_ping": 1684.6,
+    "p25_rent_per_ping": 1684.6,
+    "p75_rent_per_ping": 1684.6,
+    "median_rent_ntd": 36000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "大同區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "sample_size": 8,
+    "median_rent_per_ping": 1431.51,
+    "p25_rent_per_ping": 1198.635,
+    "p75_rent_per_ping": 2063.64,
+    "median_rent_ntd": 26000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "大同區",
+    "building_type": "辦公商業大樓",
+    "sample_size": 1,
+    "median_rent_per_ping": 1764.71,
+    "p25_rent_per_ping": 1764.71,
+    "p75_rent_per_ping": 1764.71,
+    "median_rent_ntd": 27000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "大安區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "sample_size": 23,
+    "median_rent_per_ping": 2277.74,
+    "p25_rent_per_ping": 1647.4650000000001,
+    "p75_rent_per_ping": 2767.0,
+    "median_rent_ntd": 33000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "大安區",
+    "building_type": "公寓(無電梯)",
+    "sample_size": 17,
+    "median_rent_per_ping": 3057.85,
+    "p25_rent_per_ping": 1139.69,
+    "p75_rent_per_ping": 3742.69,
+    "median_rent_ntd": 18500.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "大安區",
+    "building_type": "店面(店鋪)",
+    "sample_size": 4,
+    "median_rent_per_ping": 3430.8050000000003,
+    "p25_rent_per_ping": 2698.3675,
+    "p75_rent_per_ping": 4765.225,
+    "median_rent_ntd": 135000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "大安區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "sample_size": 11,
+    "median_rent_per_ping": 1447.47,
+    "p25_rent_per_ping": 1141.095,
+    "p75_rent_per_ping": 1947.0499999999997,
+    "median_rent_ntd": 26800.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "大安區",
+    "building_type": "辦公商業大樓",
+    "sample_size": 5,
+    "median_rent_per_ping": 1985.97,
+    "p25_rent_per_ping": 1713.84,
+    "p75_rent_per_ping": 2117.06,
+    "median_rent_ntd": 135000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "文山區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "sample_size": 11,
+    "median_rent_per_ping": 925.02,
+    "p25_rent_per_ping": 802.615,
+    "p75_rent_per_ping": 1381.045,
+    "median_rent_ntd": 30483.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "文山區",
+    "building_type": "公寓(無電梯)",
+    "sample_size": 20,
+    "median_rent_per_ping": 907.79,
+    "p25_rent_per_ping": 795.3425,
+    "p75_rent_per_ping": 939.145,
+    "median_rent_ntd": 23000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "文山區",
+    "building_type": "店面(店鋪)",
+    "sample_size": 3,
+    "median_rent_per_ping": 1537.28,
+    "p25_rent_per_ping": 1394.0900000000001,
+    "p75_rent_per_ping": 1725.275,
+    "median_rent_ntd": 45000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "文山區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "sample_size": 25,
+    "median_rent_per_ping": 1296.18,
+    "p25_rent_per_ping": 984.01,
+    "p75_rent_per_ping": 1636.57,
+    "median_rent_ntd": 21000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "松山區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "sample_size": 12,
+    "median_rent_per_ping": 2061.715,
+    "p25_rent_per_ping": 1558.0124999999998,
+    "p75_rent_per_ping": 2264.585,
+    "median_rent_ntd": 21500.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "松山區",
+    "building_type": "公寓(無電梯)",
+    "sample_size": 15,
+    "median_rent_per_ping": 1500.33,
+    "p25_rent_per_ping": 1180.31,
+    "p75_rent_per_ping": 2305.65,
+    "median_rent_ntd": 29000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "松山區",
+    "building_type": "店面(店鋪)",
+    "sample_size": 1,
+    "median_rent_per_ping": 2246.72,
+    "p25_rent_per_ping": 2246.72,
+    "p75_rent_per_ping": 2246.72,
+    "median_rent_ntd": 60302.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "松山區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "sample_size": 8,
+    "median_rent_per_ping": 1763.165,
+    "p25_rent_per_ping": 1093.01,
+    "p75_rent_per_ping": 2600.0475,
+    "median_rent_ntd": 31350.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "松山區",
+    "building_type": "辦公商業大樓",
+    "sample_size": 3,
+    "median_rent_per_ping": 3024.18,
+    "p25_rent_per_ping": 2523.555,
+    "p75_rent_per_ping": 3055.59,
+    "median_rent_ntd": 372354.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "萬華區",
+    "building_type": "住宅大樓(11層含以上有電梯)",
+    "sample_size": 8,
+    "median_rent_per_ping": 1452.185,
+    "p25_rent_per_ping": 1419.88,
+    "p75_rent_per_ping": 1517.1825,
+    "median_rent_ntd": 19500.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "萬華區",
+    "building_type": "公寓(無電梯)",
+    "sample_size": 19,
+    "median_rent_per_ping": 1007.71,
+    "p25_rent_per_ping": 864.815,
+    "p75_rent_per_ping": 1381.71,
+    "median_rent_ntd": 19000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "萬華區",
+    "building_type": "店面(店鋪)",
+    "sample_size": 1,
+    "median_rent_per_ping": 2614.76,
+    "p25_rent_per_ping": 2614.76,
+    "p75_rent_per_ping": 2614.76,
+    "median_rent_ntd": 45000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  },
+  {
+    "district": "萬華區",
+    "building_type": "華廈(10層含以下有電梯)",
+    "sample_size": 7,
+    "median_rent_per_ping": 1135.41,
+    "p25_rent_per_ping": 811.685,
+    "p75_rent_per_ping": 1453.1950000000002,
+    "median_rent_ntd": 23000.0,
+    "updated_at": "2026-06-14T11:50:39.774653"
+  }
+]

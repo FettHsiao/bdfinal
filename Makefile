@@ -39,6 +39,7 @@ ingest:
 
 process:
 	$(PY) -m pipeline.processor
+	$(PY) scripts/export_api_static_data.py
 
 # Full pipeline: all crawlers + evidence report + open-data ingest + batch processing
 run: public-evidence ingest process

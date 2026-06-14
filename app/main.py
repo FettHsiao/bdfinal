@@ -11,22 +11,18 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from pipeline.vercel_runtime import configure_vercel_sqlite
-
-configure_vercel_sqlite(ROOT)
-
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
 
+from pipeline import static_api_data
 from pipeline.db import (
     DistrictMetric,
     PricingRecommendation,
     RentalCluster,
     RentalTransaction,
     SessionLocal,
-    ensure_serverless_sqlite,
 )
 
 app = FastAPI(
@@ -59,16 +55,15 @@ HOME_LINKS = [
 
 
 def get_db():
+    if static_api_data.is_static_api_mode():
+        yield None
+        return
+
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
-
-
-@app.on_event("startup")
-def startup() -> None:
-    ensure_serverless_sqlite()
 
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
@@ -135,11 +130,19 @@ def home() -> str:
 
 @app.get("/health")
 def health() -> dict:
-    return {"status": "ok", "service": "leasepulse-api"}
+    payload = {"status": "ok", "service": "leasepulse-api"}
+    if static_api_data.is_static_api_mode():
+        payload["data_mode"] = "static_json"
+    else:
+        payload["data_mode"] = "sqlite"
+    return payload
 
 
 @app.get("/metrics/districts")
 def list_district_metrics(db: Session = Depends(get_db)) -> list[dict]:
+    if static_api_data.is_static_api_mode():
+        return static_api_data.district_metrics()
+
     rows = db.query(DistrictMetric).order_by(DistrictMetric.district).all()
     return [
         {
@@ -162,6 +165,9 @@ def list_recommendations(
     building_type: Optional[str] = Query(default=None),
     db: Session = Depends(get_db),
 ) -> list[dict]:
+    if static_api_data.is_static_api_mode():
+        return static_api_data.recommendations(district, building_type)
+
     query = db.query(PricingRecommendation)
     if district:
         query = query.filter(PricingRecommendation.district == district)
@@ -193,6 +199,15 @@ def quote_rent(
     area_ping: float = Query(..., gt=0, description="Unit area in ping"),
     db: Session = Depends(get_db),
 ) -> dict:
+    if static_api_data.is_static_api_mode():
+        payload = static_api_data.quote(district, building_type, area_ping)
+        if not payload:
+            raise HTTPException(
+                status_code=404,
+                detail=f"No metrics found for {district} / {building_type}",
+            )
+        return payload
+
     metric = (
         db.query(DistrictMetric)
         .filter(
@@ -258,6 +273,9 @@ def quote_rent(
 
 @app.get("/clusters")
 def list_clusters(db: Session = Depends(get_db)) -> list[dict]:
+    if static_api_data.is_static_api_mode():
+        return static_api_data.clusters()
+
     rows = db.query(RentalCluster).order_by(RentalCluster.cluster_id).all()
     return [
         {
@@ -274,6 +292,9 @@ def list_clusters(db: Session = Depends(get_db)) -> list[dict]:
 
 @app.get("/transactions/summary")
 def transaction_summary(db: Session = Depends(get_db)) -> dict:
+    if static_api_data.is_static_api_mode():
+        return static_api_data.transactions_summary()
+
     rows = db.query(RentalTransaction).all()
     districts = sorted({row.district for row in rows})
     return {

@@ -32,7 +32,7 @@ full = [
 ]
 
 [tool.vercel]
-entrypoint = "main:app"
+entrypoint = "app.main:app"
 
 [project.scripts]
 leasepulse-fetch = "data.taipei_open_data:main"

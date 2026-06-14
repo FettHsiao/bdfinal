@@ -128,9 +128,7 @@ PYTHONPATH=.
 ALLOW_REPROCESS=false
 ```
 
-Remove any `DATABASE_URL=sqlite:///data/leasepulse.db` from Vercel **Project → Settings → Environment Variables**. The app auto-detects serverless (`/var/task`) and uses `/tmp/leasepulse.db` even without `VERCEL` set.
-
-If Vercel still installs Streamlit/plotly, set **Install Command** to `pip install -r requirements-vercel.txt` in Project Settings (should match `vercel.json`).
+Remove any `DATABASE_URL=sqlite:///data/leasepulse.db` from Vercel **Project → Settings → Environment Variables**. On Vercel the API serves pre-exported JSON from `app/static_data/` (no SQLite at runtime).
 
 4. Vercel installs slim API deps from `pyproject.toml` (Streamlit stays in `requirements.txt` for Streamlit Cloud).
 
