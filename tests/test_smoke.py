@@ -48,6 +48,23 @@ class SmokeTests(unittest.TestCase):
         self.assertIn(".venv/", gitignore)
         self.assertIn("*.egg-info/", gitignore)
 
+    def test_serverless_database_url_uses_tmp(self):
+        import os
+
+        import pipeline.db as db
+
+        db.reset_db_connections()
+        with self.subTest(env="VERCEL"):
+            os.environ["VERCEL"] = "1"
+            self.assertTrue(db.is_serverless_runtime())
+            url = db.get_database_url()
+            self.assertIn("/tmp/leasepulse.db", url)
+        db.reset_db_connections()
+        os.environ.pop("VERCEL", None)
+
+    def test_demo_seed_database_is_tracked(self):
+        self.assertTrue((ROOT / "data" / "leasepulse.db").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

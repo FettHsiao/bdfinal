@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import os
+import shutil
 from contextlib import contextmanager
 from datetime import date, datetime
+from pathlib import Path
 
 from sqlalchemy import (
     Column,
@@ -16,6 +18,9 @@ from sqlalchemy import (
     create_engine,
 )
 from sqlalchemy.orm import declarative_base, sessionmaker
+
+ROOT = Path(__file__).resolve().parents[1]
+TMP_DB = Path("/tmp/leasepulse.db")
 
 Base = declarative_base()
 
@@ -79,11 +84,65 @@ class RentalCluster(Base):
 _engine = None
 _sessionmaker = None
 _bound_url: str | None = None
+_serverless_bootstrapped = False
+
+
+def is_serverless_runtime() -> bool:
+    return bool(
+        os.getenv("VERCEL")
+        or os.getenv("VERCEL_ENV")
+        or os.getenv("AWS_LAMBDA_FUNCTION_NAME")
+        or os.getenv("AWS_EXECUTION_ENV")
+        or Path("/var/task").exists()
+    )
+
+
+def seed_db_candidates() -> list[Path]:
+    return [
+        Path("/var/task/data/leasepulse.db"),
+        ROOT / "data" / "leasepulse.db",
+        Path.cwd() / "data" / "leasepulse.db",
+    ]
+
+
+def ensure_serverless_sqlite() -> None:
+    """On Vercel/Lambda, always use a writable SQLite file under /tmp."""
+    global _serverless_bootstrapped
+    if not is_serverless_runtime():
+        return
+
+    os.environ["ALLOW_REPROCESS"] = "false"
+
+    if not TMP_DB.exists():
+        for seed in seed_db_candidates():
+            if seed.exists():
+                shutil.copyfile(seed, TMP_DB)
+                break
+
+    os.environ["DATABASE_URL"] = f"sqlite:///{TMP_DB}"
+    _serverless_bootstrapped = True
 
 
 def get_database_url() -> str:
-    default_sqlite = f"sqlite:///{os.path.join(os.getcwd(), 'data', 'leasepulse.db')}"
-    return os.getenv("DATABASE_URL", default_sqlite)
+    ensure_serverless_sqlite()
+    if is_serverless_runtime():
+        return f"sqlite:///{TMP_DB}"
+
+    explicit = os.getenv("DATABASE_URL")
+    if explicit:
+        return explicit
+
+    local_db = ROOT / "data" / "leasepulse.db"
+    return f"sqlite:///{local_db}"
+
+
+def reset_db_connections() -> None:
+    global _engine, _sessionmaker, _bound_url
+    if _engine is not None:
+        _engine.dispose()
+    _engine = None
+    _sessionmaker = None
+    _bound_url = None
 
 
 def get_engine():
@@ -91,6 +150,8 @@ def get_engine():
     url = get_database_url()
     connect_args = {"check_same_thread": False} if url.startswith("sqlite") else {}
     if _engine is None or str(_engine.url) != url:
+        if _engine is not None:
+            _engine.dispose()
         _engine = create_engine(url, connect_args=connect_args)
     return _engine
 
@@ -118,4 +179,5 @@ def session_scope():
 
 
 def init_db() -> None:
+    ensure_serverless_sqlite()
     Base.metadata.create_all(bind=get_engine())
