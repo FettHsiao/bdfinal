@@ -13,7 +13,7 @@ import requests
 import streamlit as st
 
 API_BASE = os.getenv("API_BASE_URL", "http://localhost:8000")
-DEMAND_REPORT = Path("data/processed/demand_evidence_report.json")
+DEMAND_REPORT = Path("data/processed/demand_evidence_public_report.json")
 
 
 st.set_page_config(
@@ -48,8 +48,7 @@ try:
     clusters = fetch_json("/clusters")
 except requests.RequestException:
     st.error(
-        "Could not reach the API. Start it with `uvicorn api.main:app --reload` "
-        "or run `./scripts/run_local.sh`."
+        "Could not reach the API. Start it with `make api` after running `make run`."
     )
     st.stop()
 
@@ -198,13 +197,102 @@ if submitted:
 st.subheader("Demand validation snapshot")
 demand = load_demand_report()
 if demand:
-    left, right = st.columns(2)
-    left.write("Survey highlights")
-    left.json(demand["survey_summary"])
-    right.write("Competitor benchmark")
-    right.json(demand["competitor_summary"])
+    forum = demand["forum_summary"]
+    trends = demand.get("search_trends_summary", {})
+    app_reviews = demand.get("app_review_summary", {})
+    competitors = demand.get("competitor_pricing_summary", {})
+
+    st.caption(
+        "Evidence sources: PTT crawl + Google Trends + App Store reviews + competitor pricing pages"
+    )
+
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("Forum threads analyzed", forum.get("threads_analyzed", 0))
+    m2.metric(
+        "Trends top keyword",
+        trends.get("top_keyword_by_mean_interest") or "N/A",
+    )
+    m3.metric(
+        "App reviews collected",
+        app_reviews.get("reviews_collected") or 0,
+    )
+    m4.metric(
+        "Competitor pages checked",
+        competitors.get("pages_checked") or 0,
+    )
+
+    tab_forum, tab_trends, tab_reviews, tab_competitors = st.tabs(
+        ["PTT forum", "Google Trends", "App Store reviews", "Competitor pricing"]
+    )
+
+    with tab_forum:
+        st.markdown("**Public forum demand signals**")
+        pricing_ratio = forum.get("pricing_question_ratio")
+        st.write(
+            f"- Threads analyzed: **{forum.get('threads_analyzed', 0)}**\n"
+            f"- Pricing-question ratio: **{pricing_ratio:.0%}**"
+            if pricing_ratio is not None
+            else f"- Threads analyzed: **{forum.get('threads_analyzed', 0)}**"
+        )
+        if forum.get("median_extracted_rent_ntd"):
+            st.write(
+                f"- Median extracted rent mention: **NT${forum['median_extracted_rent_ntd']:,.0f}**"
+            )
+        if forum.get("top_districts"):
+            st.write("Most mentioned districts")
+            st.table(pd.DataFrame(forum["top_districts"], columns=["District", "Mentions"]))
+        if forum.get("top_keywords"):
+            st.write("Top keywords")
+            st.table(pd.DataFrame(forum["top_keywords"], columns=["Keyword", "Count"]))
+
+    with tab_trends:
+        st.markdown("**Google Trends (24 months)**")
+        if trends.get("available", True) and trends.get("keyword_stats"):
+            st.write(
+                f"- Timeframe: **{trends.get('timeframe', 'today 24-m')}**\n"
+                f"- Geo: **{trends.get('geo', 'TW')}**\n"
+                f"- Top keyword: **{trends.get('top_keyword_by_mean_interest')}**"
+            )
+            st.table(pd.DataFrame(trends["keyword_stats"]))
+        else:
+            st.info("Run `make search-trends` to populate Google Trends evidence.")
+
+    with tab_reviews:
+        st.markdown("**App Store review pain points**")
+        if app_reviews.get("available", True) and app_reviews.get("reviews_collected"):
+            st.write(
+                f"- Reviews collected: **{app_reviews['reviews_collected']}**\n"
+                f"- Since: **{app_reviews.get('since_date', 'N/A')}**\n"
+                f"- Average rating: **{app_reviews.get('average_rating', 'N/A')}**"
+            )
+            if app_reviews.get("top_pain_keywords"):
+                st.table(
+                    pd.DataFrame(app_reviews["top_pain_keywords"], columns=["Pain keyword", "Count"])
+                )
+        else:
+            st.info("Run `make app-reviews` to populate App Store review evidence.")
+
+    with tab_competitors:
+        st.markdown("**Live competitor pricing crawl**")
+        if competitors.get("available", True) and competitors.get("pages_checked"):
+            st.write(
+                f"- Pages checked: **{competitors['pages_checked']}**\n"
+                f"- Products: **{', '.join(competitors.get('products') or [])}**"
+            )
+            if competitors.get("median_monthly_like_price_ntd"):
+                st.write(
+                    f"- Median monthly-like extracted price: "
+                    f"**NT${competitors['median_monthly_like_price_ntd']:,}**"
+                )
+            if competitors.get("candidate_price_values_ntd"):
+                st.write("Candidate extracted prices (NTD)")
+                st.write(competitors["candidate_price_values_ntd"][:20])
+        else:
+            st.info("Run `make competitors` to populate competitor pricing evidence.")
 else:
-    st.info("Run `python scripts/collect_demand_evidence.py` to generate demand evidence.")
+    st.info(
+        "Run `make public-evidence` or `make run` to generate public demand evidence."
+    )
 
 st.subheader("Business model")
 st.markdown(

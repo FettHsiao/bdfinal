@@ -1,0 +1,42 @@
+[
+  {
+    "product": "591 出租刊登（普通方案）",
+    "category": "listing_platform",
+    "source_url": "https://www.591.com.tw/help-helpser1_5_2.html",
+    "pricing_plan_name": "出租普通刊登",
+    "manual_verified_price_ntd": 400,
+    "checked_date": "2026-06-14",
+    "notes": "Official 591 help page lists 400 NTD per rental listing for 30 days.",
+    "enabled": true
+  },
+  {
+    "product": "591 加值服務（定時更新）",
+    "category": "listing_platform_addon",
+    "source_url": "https://www.591.com.tw/help-charge.html",
+    "pricing_plan_name": "定時更新",
+    "manual_verified_price_ntd": 150,
+    "checked_date": "2026-06-14",
+    "notes": "591 add-on pricing page: timed refresh for rental listings.",
+    "enabled": true
+  },
+  {
+    "product": "591 加值服務（精選推薦）",
+    "category": "listing_platform_addon",
+    "source_url": "https://www.591.com.tw/help-charge.html",
+    "pricing_plan_name": "精選推薦區（出租）",
+    "manual_verified_price_ntd": 1500,
+    "checked_date": "2026-06-14",
+    "notes": "591 premium exposure add-on for rental listings.",
+    "enabled": true
+  },
+  {
+    "product": "LeasePulse Taipei Pro（本專案定價）",
+    "category": "analog_product",
+    "source_url": "https://github.com/FettHsiao/bdfinal",
+    "pricing_plan_name": "Pro subscription",
+    "manual_verified_price_ntd": 499,
+    "checked_date": "2026-06-14",
+    "notes": "Project business-model benchmark for willingness-to-pay comparison.",
+    "enabled": true
+  }
+]

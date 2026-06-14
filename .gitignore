@@ -3,6 +3,7 @@
 __pycache__/
 *.py[cod]
 *.egg-info/
+leasepulse_taipei.egg-info/
 .pytest_cache/
 
 # Data artifacts
@@ -16,8 +17,12 @@ data/processed/
 
 # OS / editor
 .DS_Store
+__MACOSX/
 .idea/
 .vscode/
+
+# Archives
+*.zip
 
 # Build
 dist/

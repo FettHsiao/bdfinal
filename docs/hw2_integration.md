@@ -38,6 +38,6 @@ python ../main.py
 ## Reproduce K-Means inside LeasePulse
 
 ```bash
-make run        # ingest + process (includes K-Means)
+make run        # public-evidence + ingest + process (includes K-Means)
 curl http://localhost:8000/clusters
 ```

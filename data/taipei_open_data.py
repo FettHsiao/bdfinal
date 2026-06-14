@@ -146,7 +146,6 @@ def infer_rent_total_ntd(df: pd.DataFrame) -> pd.Series:
 def normalize_rent_columns(df: pd.DataFrame) -> pd.DataFrame:
     output = pd.DataFrame()
     output["district"] = df["DISTRICT"] if "DISTRICT" in df.columns else None
-    output["location"] = df["LOCATION"] if "LOCATION" in df.columns else None
     output["building_type"] = df["BUITYPE"] if "BUITYPE" in df.columns else "unknown"
     output["area_ping"] = to_number(df["FAREA"]) if "FAREA" in df.columns else None
     output["rent_total_ntd"] = infer_rent_total_ntd(df)

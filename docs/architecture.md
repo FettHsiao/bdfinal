@@ -4,51 +4,33 @@
 
 LeasePulse Taipei converts **live Taipei City open-data rental transactions** into pricing intelligence for independent landlords.
 
+## Code organization
+
+- **`data/`** — all data acquisition and ingestion logic (open data, crawlers, evidence aggregation)
+- **`scripts/`** — thin CLI wrappers (`python scripts/foo.py` or `python -m data.foo`)
+- **`pipeline/`** — batch analytics and HW2 MapReduce K-Means
+- **`api/` / `dashboard/`** — delivery layer
+
 ## Data sources
 
-| Source | Type | Role |
-|--------|------|------|
-| Taipei Data Platform weekly real-price CSV | Live HTTP download | Primary transaction ground truth |
-| Landlord interviews | Qualitative | Willingness-to-pay and workflow pain points |
-| Public forum coding | Qualitative | Problem frequency and language used by target users |
-| Competitor benchmarks | Desk research | Pricing anchors and feature gaps |
+| Source | Module | Reliability |
+|--------|--------|-------------|
+| Taipei Data Platform weekly CSV | `data/taipei_open_data.py` | High (official open data) |
+| PTT rental boards | `data/collect_ptt_forum_signals.py` | Medium (public forum signal) |
+| Google Trends | `data/collect_search_trends.py` | Medium (relative index via public widget API) |
+| App Store RSS | `data/collect_app_store_reviews.py` | Medium (public reviews) |
+| Competitor pages | `data/collect_competitor_pricing.py` | Medium-low (manual verify) |
 
-Download endpoint (official open data):
-
-`https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=2979c431-7a32-4067-9af2-e716cd825c4b`
-
-Implementation: `data/taipei_open_data.py`
-
-## Storage
-
-- **Primary store:** PostgreSQL in production; SQLite for local/demo
-- **ORM:** SQLAlchemy models in `pipeline/db.py`
-- **Raw archive:** `data/raw/taipei_real_price_weekly.csv`
-- **Processed files:** `data/processed/transactions_ingest.csv`
-
-## Processing
-
-- **Ingestion:** `scripts/ingest_open_data.py --fetch`
-- **District analytics:** Pandas aggregations (`median`, percentile bands)
-- **Market segmentation:** HW2 MapReduce K-Means on `(area_ping, rent_per_ping)`
-- **Outputs:** `district_metrics`, `pricing_recommendations`, `rental_clusters`
-
-## Delivery
-
-1. **Streamlit dashboard** — district charts, quotes, K-Means segments
-2. **FastAPI** — `/quote`, `/metrics/districts`, `/clusters`
-3. **Future:** alerts via Redis pub/sub (stub in Docker Compose)
-
-## End-to-end flow
+## End-to-end flow (`make run`)
 
 ```
-Taipei open-data CSV
+make ptt + search-trends + app-reviews + competitors
         │
         ▼
-data/taipei_open_data.py  (download, filter 租賃, normalize)
+data/collect_public_demand_evidence.py ──► demand_evidence_public_report.json
         │
         ▼
-scripts/ingest_open_data.py ──► SQL store
+data/taipei_open_data.py + data/ingest.py ──► SQL store
         │
         ▼
 pipeline/processor.py (Pandas + HW2 K-Means)
@@ -57,16 +39,8 @@ pipeline/processor.py (Pandas + HW2 K-Means)
 FastAPI ──► Streamlit
 ```
 
-## Scalability sketch
-
-| Scale | Transactions | Approach | Est. monthly infra |
-|-------|--------------|----------|--------------------|
-| MVP | ~600 live rows | SQLite, Pandas, weekly cron fetch | < USD 25 |
-| 10× | 5k | Postgres, materialized views | USD 80–150 |
-| 100× | 50k+ | Spark batch, read replicas | USD 400–800 |
-
 ## Security & compliance
 
-- Official open-data only in MVP (no private platform scraping)
-- Addresses from raw CSV are not persisted in the product DB schema
-- PDPA review required before commercial use
+- Official open-data for transaction ground truth
+- Public demand evidence only; no private interviews in default pipeline
+- Crawlers use throttling, recency filters, and PII redaction where applicable
