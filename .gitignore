@@ -9,8 +9,9 @@ leasepulse_taipei.egg-info/
 # Data artifacts
 # Demo seed DB is committed for Vercel deployment; regenerate locally with `make ingest && make process`.
 data/raw/
-data/processed/
+data/processed/*
 !data/processed/.gitkeep
+!data/processed/demand_evidence_public_report.json
 
 # Environment
 .env

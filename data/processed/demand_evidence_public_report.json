@@ -1,0 +1,255 @@
+{
+  "generated_at": "2026-06-14T15:13:39+00:00",
+  "private_interviews_used": false,
+  "methodology": {
+    "statement": "This MVP does not claim private interviews. Demand validation uses reproducible public evidence: PTT forum discussions, search trends, App Store reviews, competitor pricing pages, and Taipei open rental data.",
+    "evidence_sources": [
+      "Taipei City real-price rental open data for market transactions",
+      "Public PTT rental-board discussions limited to the past two years",
+      "Google Trends search-interest data for the past 24 months",
+      "Current App Store reviews from rental / housing apps",
+      "Current public competitor and analogous pricing pages"
+    ],
+    "privacy_and_ethics": "Forum and review content are public pages. The crawlers throttle requests, store source URLs, filter to recent/current data, and redact common phone/email/LINE identifiers. The outputs should be used as aggregate demand signals, not as private interview records."
+  },
+  "forum_summary": {
+    "source_file": "data/processed/forum_signals_real.json",
+    "threads_analyzed": 122,
+    "pricing_question_ratio": 0.115,
+    "top_keywords": [
+      [
+        "pricing",
+        116
+      ],
+      [
+        "studio",
+        73
+      ],
+      [
+        "comparable",
+        70
+      ],
+      [
+        "elevator",
+        65
+      ],
+      [
+        "landlord",
+        49
+      ],
+      [
+        "walkup",
+        30
+      ],
+      [
+        "大同",
+        17
+      ],
+      [
+        "中山",
+        17
+      ],
+      [
+        "信義",
+        14
+      ],
+      [
+        "tool",
+        14
+      ]
+    ],
+    "top_districts": [
+      [
+        "大同",
+        17
+      ],
+      [
+        "中山",
+        17
+      ],
+      [
+        "信義",
+        14
+      ],
+      [
+        "永和",
+        12
+      ],
+      [
+        "中和",
+        11
+      ],
+      [
+        "萬華",
+        10
+      ],
+      [
+        "板橋",
+        8
+      ],
+      [
+        "三重",
+        8
+      ],
+      [
+        "松山",
+        7
+      ],
+      [
+        "大安",
+        7
+      ]
+    ],
+    "median_extracted_rent_ntd": 7500,
+    "rent_mentions_observed": 218
+  },
+  "search_trends_summary": {
+    "source_file": "data/processed/search_trends_real.json",
+    "available": true,
+    "source": "Google Trends",
+    "timeframe": "2024-06-14 2026-06-14",
+    "geo": "TW",
+    "top_keyword_by_mean_interest": "租金行情",
+    "keyword_stats": [
+      {
+        "keyword": "租金行情",
+        "mean_interest": 53.47,
+        "max_interest": 100,
+        "latest_interest": 51.0,
+        "weeks_observed": 106
+      },
+      {
+        "keyword": "租屋價格",
+        "mean_interest": 53.31,
+        "max_interest": 100,
+        "latest_interest": 58.0,
+        "weeks_observed": 106
+      },
+      {
+        "keyword": "台北租金",
+        "mean_interest": 35.95,
+        "max_interest": 100,
+        "latest_interest": 36.0,
+        "weeks_observed": 106
+      },
+      {
+        "keyword": "租屋行情",
+        "mean_interest": 17.11,
+        "max_interest": 100,
+        "latest_interest": 32.0,
+        "weeks_observed": 106
+      },
+      {
+        "keyword": "實價登錄租賃",
+        "mean_interest": 3.21,
+        "max_interest": 100,
+        "latest_interest": 0.0,
+        "weeks_observed": 106
+      }
+    ],
+    "note": "Google Trends values are relative search interest scores from 0 to 100, not absolute search volume."
+  },
+  "app_review_summary": {
+    "source_file": "data/processed/app_reviews_real.json",
+    "available": true,
+    "source": "Apple App Store public RSS customer reviews",
+    "since_date": "2024-06-14",
+    "reviews_collected": 150,
+    "average_rating": 1.69,
+    "top_pain_keywords": [
+      [
+        "data_quality",
+        36
+      ],
+      [
+        "trust",
+        36
+      ],
+      [
+        "contact",
+        32
+      ],
+      [
+        "ads",
+        24
+      ],
+      [
+        "search_quality",
+        17
+      ],
+      [
+        "pricing",
+        6
+      ]
+    ]
+  },
+  "competitor_pricing_summary": {
+    "source_file": "data/processed/competitor_pricing_real.json",
+    "available": true,
+    "source": "Current public competitor / analogous pricing pages",
+    "pages_checked": 3,
+    "products": [
+      "591 出租刊登（普通方案）",
+      "591 加值服務（定時更新）",
+      "591 加值服務（精選推薦）"
+    ],
+    "manual_verified_benchmarks": [
+      {
+        "product": "591 出租刊登（普通方案）",
+        "pricing_plan_name": "出租普通刊登",
+        "manual_verified_price_ntd": 400,
+        "source_url": "https://www.591.com.tw/help-helpser1_5_2.html"
+      },
+      {
+        "product": "591 加值服務（定時更新）",
+        "pricing_plan_name": "定時更新",
+        "manual_verified_price_ntd": 150,
+        "source_url": "https://www.591.com.tw/help-charge.html"
+      },
+      {
+        "product": "591 加值服務（精選推薦）",
+        "pricing_plan_name": "精選推薦區（出租）",
+        "manual_verified_price_ntd": 1500,
+        "source_url": "https://www.591.com.tw/help-charge.html"
+      }
+    ],
+    "candidate_price_values_ntd": [
+      85,
+      90,
+      100,
+      150,
+      180,
+      200,
+      240,
+      280,
+      400,
+      518,
+      591,
+      600,
+      720,
+      1500,
+      2007,
+      2026,
+      2500,
+      8000,
+      8591,
+      8891,
+      15000,
+      160231,
+      205179
+    ],
+    "median_monthly_like_price_ntd": 400,
+    "note": "Manual verified prices are checked against public pages. Extracted numbers are candidates and should be cited with source URLs."
+  },
+  "demand_conclusion": {
+    "target_wedge": "Independent landlords managing 2-15 units in Greater Taipei",
+    "evidence_strength": "Moderate; reproducible public evidence without private interviews",
+    "why_need_exists": [
+      "Forum posts reveal repeated rent-pricing, comparables, and vacancy discussions.",
+      "Search-interest data shows whether rent-pricing keywords attract sustained attention.",
+      "App reviews expose pain points in existing rental-search and landlord tools.",
+      "Competitor/listing pricing pages show landlords already pay for visibility or rental-management workflows."
+    ],
+    "recommended_positioning": "Free district snapshot; paid custom rent quote, alerts, and API access."
+  }
+}

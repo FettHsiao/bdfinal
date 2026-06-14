@@ -13,7 +13,8 @@ import requests
 import streamlit as st
 
 API_BASE = os.getenv("API_BASE_URL", "http://localhost:8000")
-DEMAND_REPORT = Path("data/processed/demand_evidence_public_report.json")
+ROOT = Path(__file__).resolve().parents[1]
+DEMAND_REPORT = ROOT / "data/processed/demand_evidence_public_report.json"
 
 
 st.set_page_config(
@@ -24,6 +25,12 @@ st.set_page_config(
 
 st.title("LeasePulse Taipei")
 st.caption("Rental pricing intelligence for independent landlords in Greater Taipei")
+st.markdown(
+    "**Live links:** "
+    "[API](https://bdfinal.vercel.app/) · "
+    "[API docs](https://bdfinal.vercel.app/docs) · "
+    "[Dashboard](https://bdfinal-3duijsfwpwhqeonuvftnfc.streamlit.app/)"
+)
 
 
 @st.cache_data(ttl=60)
@@ -283,7 +290,7 @@ if demand:
             )
             if competitors.get("median_monthly_like_price_ntd"):
                 st.write(
-                    f"- Median monthly-like extracted price: "
+                    f"- Median monthly-like incumbent benchmark (LeasePulse excluded): "
                     f"**NT${competitors['median_monthly_like_price_ntd']:,}**"
                 )
             if competitors.get("candidate_price_values_ntd"):
