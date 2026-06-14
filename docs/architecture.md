@@ -4,13 +4,21 @@
 
 LeasePulse Taipei converts **live Taipei City open-data rental transactions** into pricing intelligence for independent landlords.
 
+## Live demo
+
+| Service | URL |
+|---------|-----|
+| API | [https://bdfinal.vercel.app/](https://bdfinal.vercel.app/) |
+| API docs | [https://bdfinal.vercel.app/docs](https://bdfinal.vercel.app/docs) |
+| Dashboard | [https://bdfinal-3duijsfwpwhqeonuvftnfc.streamlit.app/](https://bdfinal-3duijsfwpwhqeonuvftnfc.streamlit.app/) |
+
 ## Code organization
 
 - **`data/`** — all data acquisition and ingestion logic (open data, crawlers, evidence aggregation)
 - **`scripts/`** — thin CLI wrappers (`python scripts/foo.py` or `python -m data.foo`)
 - **`pipeline/`** — batch analytics and HW2 MapReduce K-Means
-- **`app/`** — FastAPI application (`app/main.py`)
-- **`api/index.py`** — Vercel serverless entry (copies seed SQLite to `/tmp`)
+- **`app/`** — FastAPI application (`app/main.py`) and static JSON payloads for Vercel
+- **`api/index.py`** — legacy shim; Vercel entry is `app.main:app` via `pyproject.toml`
 
 ## Data sources
 
@@ -37,10 +45,10 @@ data/taipei_open_data.py + data/ingest.py ──► SQL store
 pipeline/processor.py (Pandas + HW2 K-Means)
         │
         ▼
-FastAPI ──► Streamlit (local / Streamlit Cloud)
+FastAPI (Vercel) ──► Streamlit Cloud dashboard
 ```
 
-Deploy the API on Vercel via `api/index.py` + `vercel.json`; the seed database lives in `data/leasepulse.db`.
+Deploy the API on [Vercel](https://bdfinal.vercel.app/) using `app.main:app`; serverless runtime reads pre-exported JSON from `app/static_data/`. Local development uses SQLite in `data/leasepulse.db`.
 
 ## Security & compliance
 

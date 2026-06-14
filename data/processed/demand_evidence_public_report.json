@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-14T15:13:39+00:00",
+  "generated_at": "2026-06-14T15:59:57+00:00",
   "private_interviews_used": false,
   "methodology": {
     "statement": "This MVP does not claim private interviews. Demand validation uses reproducible public evidence: PTT forum discussions, search trends, App Store reviews, competitor pricing pages, and Taipei open rental data.",
@@ -113,16 +113,16 @@
     "keyword_stats": [
       {
         "keyword": "租金行情",
-        "mean_interest": 53.47,
+        "mean_interest": 53.41,
         "max_interest": 100,
-        "latest_interest": 51.0,
+        "latest_interest": 45.0,
         "weeks_observed": 106
       },
       {
         "keyword": "租屋價格",
-        "mean_interest": 53.31,
+        "mean_interest": 53.33,
         "max_interest": 100,
-        "latest_interest": 58.0,
+        "latest_interest": 60.0,
         "weeks_observed": 106
       },
       {
@@ -134,9 +134,9 @@
       },
       {
         "keyword": "租屋行情",
-        "mean_interest": 17.11,
+        "mean_interest": 17.28,
         "max_interest": 100,
-        "latest_interest": 32.0,
+        "latest_interest": 50.0,
         "weeks_observed": 106
       },
       {
@@ -235,7 +235,7 @@
       8591,
       8891,
       15000,
-      160231,
+      160232,
       205179
     ],
     "median_monthly_like_price_ntd": 400,

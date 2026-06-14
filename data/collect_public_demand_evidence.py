@@ -97,11 +97,18 @@ def summarize_competitors(path: Path) -> dict:
     if not payload:
         return {"source_file": rel_path(path), "available": False}
     rows = payload.get("records", [])
+
+    def is_own_product(row: dict) -> bool:
+        return "leasepulse" in (row.get("product") or "").lower()
+
+    incumbent_rows = [row for row in rows if not is_own_product(row)]
     summary = payload.get("summary", {})
-    candidate_prices = [p for row in rows for p in row.get("extracted_price_values_ntd", [])]
+    candidate_prices = [
+        p for row in incumbent_rows for p in row.get("extracted_price_values_ntd", [])
+    ]
     manual_prices = [
         row["manual_verified_price_ntd"]
-        for row in rows
+        for row in incumbent_rows
         if row.get("manual_verified_price_ntd") is not None
     ]
     monthly_like = [p for p in candidate_prices if 50 <= p <= 5000]
@@ -110,9 +117,18 @@ def summarize_competitors(path: Path) -> dict:
         "source_file": rel_path(path),
         "available": bool(rows),
         "source": summary.get("source"),
-        "pages_checked": summary.get("pages_checked"),
-        "products": summary.get("products"),
-        "manual_verified_benchmarks": summary.get("manual_verified_benchmarks", []),
+        "pages_checked": len(incumbent_rows),
+        "products": [row["product"] for row in incumbent_rows],
+        "manual_verified_benchmarks": [
+            {
+                "product": row["product"],
+                "pricing_plan_name": row.get("pricing_plan_name"),
+                "manual_verified_price_ntd": row["manual_verified_price_ntd"],
+                "source_url": row["source_url"],
+            }
+            for row in incumbent_rows
+            if row.get("manual_verified_price_ntd") is not None
+        ],
         "candidate_price_values_ntd": sorted(set(candidate_prices))[:50],
         "median_monthly_like_price_ntd": int(statistics.median(all_benchmarks)) if all_benchmarks else None,
         "note": summary.get("note"),

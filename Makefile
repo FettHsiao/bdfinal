@@ -1,6 +1,6 @@
 .PHONY: install setup run fetch ingest process \
 	ptt search-trends app-reviews competitors public-evidence public-evidence-collect \
-	api dashboard report clean test package
+	api dashboard clean test package
 
 PY ?= .venv/bin/python
 export DATABASE_URL ?= sqlite:///data/leasepulse.db
@@ -49,9 +49,6 @@ api:
 
 dashboard:
 	API_BASE_URL=http://localhost:8000 $(PY) -m streamlit run dashboard/app.py
-
-report:
-	$(PY) report/generate_report.py
 
 test:
 	$(PY) -m unittest discover -s tests -p "test_*.py"
