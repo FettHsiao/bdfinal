@@ -53,9 +53,38 @@ pip install -e .
 # Runs ALL crawlers + evidence report + open-data ingest + batch processing
 make run
 make report
+```
 
-make api        # terminal 1
-make dashboard  # terminal 2
+### Live demo (for graders)
+
+After deploying to Vercel and Streamlit Cloud, share these **cloud URLs** on the PDF cover page — graders cannot open your localhost.
+
+| Service | URL |
+|---------|-----|
+| **API (Vercel)** | `https://bdfinal.vercel.app/docs` |
+| **Dashboard (Streamlit Cloud)** | `https://bdfinal-3duijsfwpwhqeonuvftnfc.streamlit.app` |
+
+Set Streamlit Cloud Secrets:
+
+```toml
+API_BASE_URL = "https://bdfinal.vercel.app"
+```
+
+Regenerate the PDF if your URLs differ:
+
+```bash
+VERCEL_API_URL=https://bdfinal.vercel.app \
+STREAMLIT_DASHBOARD_URL=https://your-app.streamlit.app \
+make report
+```
+
+### Local development (optional)
+
+Use these only to test on your machine before/after deployment:
+
+```bash
+make api        # http://localhost:8000 — not required for final demo
+make dashboard  # http://localhost:8501 — not required for final demo
 ```
 
 ### `make run` executes
@@ -91,15 +120,15 @@ make process
 
 2. Push to GitHub and import the repo in Vercel.
 
-3. Set Vercel environment variables:
+3. Set Vercel environment variables (optional; `api/index.py` forces `/tmp` on Vercel):
 
 ```text
-DATABASE_URL=sqlite:////tmp/leasepulse.db
-ALLOW_REPROCESS=false
 PYTHON_VERSION=3.11
+PYTHONPATH=.
+ALLOW_REPROCESS=false
 ```
 
-`api/index.py` copies `data/leasepulse.db` to `/tmp/leasepulse.db` on cold start.
+Remove any `DATABASE_URL=sqlite:///data/leasepulse.db` from Vercel settings, or set it to `sqlite:////tmp/leasepulse.db`.
 
 4. Vercel uses `requirements-vercel.txt` (see `vercel.json`). Streamlit dashboard stays local or on Streamlit Cloud.
 
@@ -111,11 +140,40 @@ PYTHON_VERSION=3.11
 /metrics/districts
 ```
 
-6. Regenerate the PDF with your live URL:
+6. Regenerate the PDF with your live URLs:
 
 ```bash
-VERCEL_API_URL=https://your-project.vercel.app make report
+VERCEL_API_URL=https://bdfinal.vercel.app \
+STREAMLIT_DASHBOARD_URL=https://your-app.streamlit.app \
+make report
 ```
+
+## Deploy dashboard to Streamlit Cloud
+
+Repo layout on GitHub is **flat** (no extra `final/` folder):
+
+```text
+bdfinal/
+  dashboard/app.py        ← Main file path
+  requirements.txt
+  ...
+```
+
+### Streamlit Cloud settings
+
+| Field | Value |
+|-------|-------|
+| Repository | `FettHsiao/bdfinal` |
+| Branch | `main` |
+| **Main file path** | **`dashboard/app.py`** |
+
+### Secrets (Advanced settings)
+
+```toml
+API_BASE_URL = "https://bdfinal.vercel.app"
+```
+
+The dashboard reads this via `os.getenv("API_BASE_URL")` in `dashboard/app.py`. Ensure the Vercel API `/health` responds before demoing the dashboard.
 
 ## Ethics
 

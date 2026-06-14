@@ -1,4 +1,4 @@
-"""Vercel serverless entrypoint for the LeasePulse FastAPI app."""
+"""Backward-compatible Vercel entry when deployments still route to api/main.py."""
 
 from __future__ import annotations
 

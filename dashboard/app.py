@@ -48,7 +48,9 @@ try:
     clusters = fetch_json("/clusters")
 except requests.RequestException:
     st.error(
-        "Could not reach the API. Start it with `make api` after running `make run`."
+        "Could not reach the API. On Streamlit Cloud, set Secrets "
+        '`API_BASE_URL = "https://bdfinal.vercel.app"` . '
+        "For local dev, run `make api` after `make run`."
     )
     st.stop()
 

@@ -40,6 +40,9 @@ class SmokeTests(unittest.TestCase):
         spec.loader.exec_module(module)
         self.assertTrue(hasattr(module, "app"))
 
+    def test_streamlit_dashboard_exists(self):
+        self.assertTrue((ROOT / "dashboard" / "app.py").exists())
+
     def test_gitignore_excludes_local_env(self):
         gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
         self.assertIn(".venv/", gitignore)

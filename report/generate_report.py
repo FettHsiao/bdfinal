@@ -37,11 +37,11 @@ TAIPEI_OPEN_DATA_URL = (
     "https://data.taipei/api/frontstage/tpeod/dataset/resource.download"
     "?rid=2979c431-7a32-4067-9af2-e716cd825c4b"
 )
-VERCEL_API_URL = os.getenv("VERCEL_API_URL", "https://bdfinal.vercel.app").strip()
-LIVE_DEMO_NOTE = (
-    f"Live API: {VERCEL_API_URL} (Swagger docs at {VERCEL_API_URL}/docs). "
-    "Local dashboard: run `make api` and `make dashboard`."
-)
+VERCEL_API_URL = os.getenv("VERCEL_API_URL", "https://bdfinal.vercel.app").strip().rstrip("/")
+STREAMLIT_DASHBOARD_URL = os.getenv(
+    "STREAMLIT_DASHBOARD_URL",
+    "https://bdfinal-3duijsfwpwhqeonuvftnfc.streamlit.app",
+).strip().rstrip("/")
 
 REPORT_FONT = "Helvetica"
 REPORT_FONT_BOLD = "Helvetica-Bold"
@@ -322,8 +322,8 @@ def build_report(output_path: Path) -> None:
     story.append(Paragraph("Big Data Systems — Final Project — Spring 2026", styles["SubCenter"]))
     story.append(Spacer(1, 0.6 * cm))
     story.append(Paragraph(f"<b>GitHub Repository:</b> {GITHUB_URL}", styles["SubCenter"]))
-    story.append(Paragraph(f"<b>Clone URL:</b> {GITHUB_CLONE_URL}", styles["SubCenter"]))
-    story.append(Paragraph(f"<b>Live Demo:</b> {LIVE_DEMO_NOTE}", styles["SubCenter"]))
+    story.append(Paragraph(f"<b>Live Dashboard:</b> {STREAMLIT_DASHBOARD_URL}", styles["SubCenter"]))
+    story.append(Paragraph(f"<b>API Docs:</b> {VERCEL_API_URL}/docs", styles["SubCenter"]))
     story.append(Spacer(1, 0.8 * cm))
     story.append(
         Paragraph(
@@ -822,8 +822,9 @@ def build_report(output_path: Path) -> None:
         "git clone https://github.com/FettHsiao/bdfinal.git && cd bdfinal",
         "python3 -m venv .venv && source .venv/bin/activate && pip install -e .",
         "make run   # ptt + trends + reviews + competitors + evidence + ingest + process",
-        "make api   # terminal 1 → http://localhost:8000/",
-        "make dashboard   # terminal 2 → http://localhost:8501/",
+        f"Live API docs: {VERCEL_API_URL}/docs",
+        f"Live dashboard: {STREAMLIT_DASHBOARD_URL}",
+        "Local dev only: make api && make dashboard (localhost testing)",
         "make report   # regenerate r14921059.pdf",
     ]
     story.append(Paragraph("<b>Quick reproduction steps:</b>", styles["Body"]))

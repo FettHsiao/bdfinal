@@ -3,7 +3,17 @@
 from __future__ import annotations
 
 import os
+import sys
+from pathlib import Path
 from typing import Optional
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from pipeline.vercel_runtime import configure_vercel_sqlite
+
+configure_vercel_sqlite(ROOT)
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -63,6 +73,11 @@ def startup() -> None:
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
 def home() -> str:
+    api_docs = os.getenv("VERCEL_API_URL", "https://bdfinal.vercel.app").rstrip("/") + "/docs"
+    dashboard_url = os.getenv(
+        "STREAMLIT_DASHBOARD_URL",
+        "https://bdfinal-3duijsfwpwhqeonuvftnfc.streamlit.app",
+    ).rstrip("/")
     links_html = "\n".join(
         f"""
         <li>
@@ -109,8 +124,10 @@ def home() -> str:
     {links_html}
   </ul>
   <p class="hint">
-    For the customer-facing product UI, run <code>make dashboard</code>
-    locally or deploy the Streamlit app separately.
+    Live dashboard:
+    <a href="{dashboard_url}">{dashboard_url}</a><br/>
+    API docs:
+    <a href="{api_docs}">{api_docs}</a>
   </p>
 </body>
 </html>"""
