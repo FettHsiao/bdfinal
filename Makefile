@@ -1,4 +1,4 @@
-.PHONY: install setup run ingest process evidence api dashboard report clean
+.PHONY: install setup run fetch ingest process evidence api dashboard report clean sample
 
 PY ?= .venv/bin/python
 export DATABASE_URL ?= sqlite:///data/leasepulse.db
@@ -14,8 +14,14 @@ setup: install evidence ingest process
 evidence:
 	$(PY) scripts/collect_demand_evidence.py
 
+fetch:
+	$(PY) -m data
+
 ingest:
-	$(PY) scripts/ingest_open_data.py --csv data/sample/transactions.csv
+	$(PY) scripts/ingest_open_data.py --fetch
+
+sample:
+	$(PY) scripts/ingest_open_data.py --sample
 
 process:
 	$(PY) -m pipeline.processor

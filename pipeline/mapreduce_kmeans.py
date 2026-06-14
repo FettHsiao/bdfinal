@@ -88,13 +88,72 @@ def split_data(data, num_chunks):
     return [data[i : i + chunk_size] for i in range(0, len(data), chunk_size)]
 
 
+def _map_assignments(
+    data_chunk: list[np.ndarray],
+    centroids: list[np.ndarray],
+) -> list[tuple[int, np.ndarray] | tuple[str, int, np.ndarray]]:
+    """Mapper logic from HW2, executed in-process."""
+    outputs: list[tuple[int, np.ndarray] | tuple[str, int, np.ndarray]] = []
+    centroid_arr = [np.asarray(c, dtype=float) for c in centroids]
+    for idx, centroid in enumerate(centroid_arr):
+        outputs.append(("__centroid__", idx, centroid))
+
+    for point in data_chunk:
+        point_arr = np.asarray(point, dtype=float)
+        distances = [np.sum((point_arr - c) ** 2) for c in centroid_arr]
+        outputs.append((int(np.argmin(distances)), point_arr))
+    return outputs
+
+
+def _reduce_assignments(
+    mapped_outputs: list,
+    num_clusters: int,
+) -> list[np.ndarray]:
+    """Reducer logic from HW2, executed in-process."""
+    cluster_sums = [None] * num_clusters
+    cluster_counts = [0] * num_clusters
+    previous_centroids: dict[int, np.ndarray] = {}
+    point_dim = None
+
+    for item in mapped_outputs:
+        if len(item) == 3 and item[0] == "__centroid__":
+            _, cluster_idx, centroid = item
+            previous_centroids.setdefault(cluster_idx, np.asarray(centroid, dtype=float))
+            if point_dim is None:
+                point_dim = previous_centroids[cluster_idx].shape[0]
+            continue
+
+        cluster_idx, point = item
+        point = np.asarray(point, dtype=float)
+        if point_dim is None:
+            point_dim = point.shape[0]
+        if cluster_sums[cluster_idx] is None:
+            cluster_sums[cluster_idx] = np.zeros(point_dim, dtype=float)
+        cluster_sums[cluster_idx] += point
+        cluster_counts[cluster_idx] += 1
+
+    updated: list[np.ndarray] = []
+    for cluster_idx in range(num_clusters):
+        if cluster_counts[cluster_idx] > 0:
+            updated.append(cluster_sums[cluster_idx] / cluster_counts[cluster_idx])
+        elif cluster_idx in previous_centroids:
+            updated.append(previous_centroids[cluster_idx])
+        else:
+            updated.append(np.zeros(point_dim or 1, dtype=float))
+    return updated
+
+
 def run_mapreduce_kmeans(
     points: list[np.ndarray],
     num_clusters: int = 4,
     num_mappers: int = 4,
     max_iter: int = 10,
 ) -> tuple[list[np.ndarray], list[int]]:
-    """Return final centroids and cluster assignment for each point."""
+    """Return final centroids and cluster assignment for each point.
+
+    Uses the HW2 mapper/reducer logic in-process for reliability when imported
+    from the batch pipeline (multiprocessing can hang on macOS without __main__ guard).
+    """
     if len(points) < num_clusters:
         raise ValueError(
             f"Need at least {num_clusters} points for K-Means, got {len(points)}"
@@ -104,34 +163,23 @@ def run_mapreduce_kmeans(
     init_indices = rng.choice(len(points), num_clusters, replace=False)
     centroids = [np.asarray(points[i], dtype=float) for i in init_indices]
 
-    assignments: list[int] = [0] * len(points)
-
     for _ in range(max_iter):
-        data_chunks = split_data(points, min(num_mappers, len(points)))
-        result_queue = multiprocessing.Queue()
+        chunks = split_data(points, min(num_mappers, len(points)))
+        mapped_outputs = []
+        for chunk in chunks:
+            mapped_outputs.extend(_map_assignments(chunk, centroids))
 
-        mappers = [KMeansMapper(chunk, centroids, result_queue) for chunk in data_chunks]
-        for mapper in mappers:
-            mapper.start()
-        for mapper in mappers:
-            mapper.join()
-
-        manager = multiprocessing.Manager()
-        new_centroids = manager.dict()
-        reducer = KMeansReducer(result_queue, num_clusters, new_centroids)
-        reducer.start()
-        reducer.join()
-
-        updated = [new_centroids[i] for i in range(num_clusters)]
+        updated = _reduce_assignments(mapped_outputs, num_clusters)
         if np.allclose(centroids, updated, atol=1e-4):
             centroids = updated
             break
         centroids = updated
 
     final_centroids = [np.asarray(c, dtype=float) for c in centroids]
-    for idx, point in enumerate(points):
+    assignments: list[int] = []
+    for point in points:
         point_arr = np.asarray(point, dtype=float)
         distances = [np.sum((point_arr - c) ** 2) for c in final_centroids]
-        assignments[idx] = int(np.argmin(distances))
+        assignments.append(int(np.argmin(distances)))
 
     return final_centroids, assignments

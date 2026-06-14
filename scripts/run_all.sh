@@ -17,8 +17,8 @@ mkdir -p data/processed
 echo "==> 1/3 Demand evidence"
 "$PY" scripts/collect_demand_evidence.py
 
-echo "==> 2/3 Ingest transactions"
-"$PY" scripts/ingest_open_data.py --csv data/sample/transactions.csv
+echo "==> 2/3 Fetch + ingest live Taipei open data"
+"$PY" scripts/ingest_open_data.py --fetch
 
 echo "==> 3/3 Batch processing + HW2 K-Means segmentation"
 "$PY" -m pipeline.processor

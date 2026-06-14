@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+from urllib.parse import quote
 
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import requests
 import streamlit as st
 
@@ -105,15 +107,93 @@ with st.form("quote_form"):
     submitted = st.form_submit_button("Get recommendation")
 
 if submitted:
-    quote = fetch_json(
-        f"/quote?district={district}&building_type={building_type}&area_ping={area_ping}"
+    query = (
+        f"district={quote(str(district))}"
+        f"&building_type={quote(str(building_type))}"
+        f"&area_ping={area_ping}"
     )
+    quote = fetch_json(f"/quote?{query}")
+
     st.success(
-        f"Recommended monthly rent: **{quote['recommended_rent_low']:,} – "
-        f"{quote['recommended_rent_high']:,} TWD** "
-        f"(midpoint {quote['recommended_rent_mid']:,} TWD, "
-        f"confidence {quote['confidence_score']:.0%})"
+        f"Recommended monthly rent band: **{quote['recommended_rent_low']:,} – "
+        f"{quote['recommended_rent_high']:,} TWD**"
     )
+
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Conservative (P25)", f"{quote['recommended_rent_low']:,} TWD")
+    c2.metric("Market median", f"{quote['recommended_rent_mid']:,} TWD")
+    c3.metric("Aggressive (P75)", f"{quote['recommended_rent_high']:,} TWD")
+    c4.metric("Confidence", f"{quote['confidence_score']:.0%}")
+
+    left, right = st.columns([1.1, 1])
+    with left:
+        band_df = pd.DataFrame(
+            [
+                {
+                    "Strategy": "Conservative (P25)",
+                    "Monthly rent (TWD)": f"{quote['recommended_rent_low']:,}",
+                    "Rent / ping (TWD)": f"{quote['rent_per_ping_low']:,.0f}",
+                    "Annual rent (TWD)": f"{quote['annual_rent_estimate']['low_ntd']:,}",
+                },
+                {
+                    "Strategy": "Market median",
+                    "Monthly rent (TWD)": f"{quote['recommended_rent_mid']:,}",
+                    "Rent / ping (TWD)": f"{quote['rent_per_ping_mid']:,.0f}",
+                    "Annual rent (TWD)": f"{quote['annual_rent_estimate']['mid_ntd']:,}",
+                },
+                {
+                    "Strategy": "Aggressive (P75)",
+                    "Monthly rent (TWD)": f"{quote['recommended_rent_high']:,}",
+                    "Rent / ping (TWD)": f"{quote['rent_per_ping_high']:,.0f}",
+                    "Annual rent (TWD)": f"{quote['annual_rent_estimate']['high_ntd']:,}",
+                },
+            ]
+        )
+        st.markdown("**Pricing breakdown**")
+        st.dataframe(band_df, use_container_width=True, hide_index=True)
+
+        guidance = quote["pricing_guidance"]
+        st.markdown("**How to read this quote**")
+        for key in ("conservative", "market", "aggressive"):
+            item = guidance[key]
+            st.markdown(
+                f"- **{item['label']}**: {item['monthly_rent_ntd']:,} TWD "
+                f"({item['rent_per_ping_ntd']:,.0f} TWD/ping) — {item['note']}"
+            )
+
+    with right:
+        fig = go.Figure(
+            go.Bar(
+                x=["P25", "Median", "P75"],
+                y=[
+                    quote["recommended_rent_low"],
+                    quote["recommended_rent_mid"],
+                    quote["recommended_rent_high"],
+                ],
+                marker_color=["#93c5fd", "#1f4e79", "#fca5a5"],
+                text=[
+                    f"{quote['recommended_rent_low']:,}",
+                    f"{quote['recommended_rent_mid']:,}",
+                    f"{quote['recommended_rent_high']:,}",
+                ],
+                textposition="outside",
+            )
+        )
+        fig.update_layout(
+            title=f"Monthly rent band — {quote['district']} / {area_ping} ping",
+            yaxis_title="Monthly rent (TWD)",
+            height=360,
+            margin=dict(t=60, b=20),
+        )
+        st.plotly_chart(fig, use_container_width=True)
+
+    meta1, meta2, meta3 = st.columns(3)
+    meta1.info(f"Comparable sample size: **{quote['sample_size']}** transactions")
+    meta2.info(
+        "District median (all sizes): "
+        f"**{int(quote['district_median_rent_ntd']):,} TWD/month**"
+    )
+    meta3.info(f"Data updated: **{quote['updated_at'][:10]}**")
 
 st.subheader("Demand validation snapshot")
 demand = load_demand_report()
